@@ -1,0 +1,15 @@
+# 统一行尾为 LF。
+# 原因：本机 core.autocrlf=true，Git 会在检出时把 LF 换成 CRLF。
+# 这在 Windows 上写 Python/Markdown 无害，但到 Step 14 用 Docker 时会出事：
+# shell 脚本里的 `#!/bin/bash\r` 会让容器启动失败，且报错信息完全看不出是行尾问题。
+# 现在一行配置解决，比将来在容器里调试半天便宜得多。
+* text=auto eol=lf
+
+# 二进制文件不做任何文本/行尾处理
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.mp4 binary
